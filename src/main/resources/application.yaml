@@ -1,6 +1,6 @@
 spring:
   application:
-    name: "${APPLICATION_NAME:smart-clinic-management}"
+    name: "${APPLICATION_NAME:booking-management}"
   datasource:
     url: jdbc:postgresql://localhost:5432/postgres
     username: postgres
@@ -10,7 +10,7 @@ spring:
 server:
   port: 8081
   servlet:
-    context-path: "/${APPLICATION_PREFIX:smartClinicManagement/v1}"
+    context-path: "/${APPLICATION_PREFIX:nexus/v1}"
   error.include-stacktrace: never
 
 log:

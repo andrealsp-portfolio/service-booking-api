@@ -1,19 +1,16 @@
 package service_booking_api.core.application.service.identity.user.mapper;
 
+import org.springframework.stereotype.Component;
 import service_booking_api.core.domain.entity.users.UserEntity;
 import service_booking_api.core.domain.model.users.Role;
 import service_booking_api.core.domain.model.users.request.UserSignupRequest;
 import service_booking_api.shared.utils.GetLocalTime;
-import org.springframework.stereotype.Component;
-
-import java.util.UUID;
 
 @Component
 public final class UserEntityMapper {
 
     public static UserEntity mapUserEntityRegistration(UserSignupRequest request, String passwordHash) {
         return UserEntity.builder()
-                .id(UUID.randomUUID())
                 .name(request.getName())
                 .username(request.getUsername())
                 .email(request.getEmail())

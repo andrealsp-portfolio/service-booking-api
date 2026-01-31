@@ -39,6 +39,7 @@ public class JwtTokenProviderService implements JwtTokenProvider {
 
         return Jwts.builder()
                 .claim("username", request.getUsername())
+                .claim("name", request.getName())
                 .claim("userId", request.getId().toString())
                 .claim("email", request.getEmail())
                 .claim("role", request.getAuthorities())
