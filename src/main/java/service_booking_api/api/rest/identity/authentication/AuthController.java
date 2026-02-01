@@ -26,13 +26,14 @@ public class AuthController implements AuthControllerAPI {
 
     @Override
     public ResponseEntity<Void> registerUser(UserSignupRequest request) throws ApplicationException {
+        log.info("Registering user: {}", request.getName());
         userService.register(request);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     @Override
     public ResponseEntity<AuthToken> generateToken(UserSigninRequest request) throws ApplicationException {
-        log.info("Generating token for users: {}", request.getIdentifier());
+        log.info("Generating token for user: {}", request.getIdentifier());
         return ResponseEntity.ok().body(authService.authenticate(request));
     }
 

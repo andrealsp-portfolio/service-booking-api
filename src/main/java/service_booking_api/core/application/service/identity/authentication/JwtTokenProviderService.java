@@ -66,11 +66,9 @@ public class JwtTokenProviderService implements JwtTokenProvider {
         try {
             log.debug("Validating JWT token for users: {}", userDetails.getUsername());
 
-            // Generate and decode the secret key
             String secretKey = generateSecretKey(userDetails);
             byte[] decodedKey = Base64.getDecoder().decode(secretKey);
 
-            // Parse and verify the token
             Jwts.parser()
                     .verifyWith(Keys.hmacShaKeyFor(decodedKey))
                     .build()
@@ -83,19 +81,19 @@ public class JwtTokenProviderService implements JwtTokenProvider {
             log.warn("Token expired for users: {} - {}",
                     ex.getClaims().getSubject(),
                     ex.getMessage());
-            throw new ApplicationException(401, "Token expirado. Por favor, faça login novamente.");
+            throw new ApplicationException(401, "Token expired. Please log in again.");
         } catch (MalformedJwtException ex) {
             log.warn("Invalid JWT token format: {}", ex.getMessage());
-            throw new ApplicationException(401, "Formato de token inválido.");
+            throw new ApplicationException(401, "Invalid token format.");
         } catch (SecurityException ex) {
             log.warn("Invalid JWT signature for token: {}", token);
-            throw new ApplicationException(401, "Assinatura do token inválida.");
+            throw new ApplicationException(401, "Invalid token signature.");
         } catch (IllegalArgumentException ex) {
             log.warn("JWT token is null or empty");
-            throw new ApplicationException(400, "Token não pode ser vazio.");
+            throw new ApplicationException(400, "Token must not be empty.");
         } catch (Exception ex) {
             log.error("Unexpected error during token validation: {}", ex.getMessage(), ex);
-            throw new ApplicationException(500, "Erro ao validar o token.");
+            throw new ApplicationException(500, "Error while validating token.");
         }
     }
 
