@@ -1,5 +1,6 @@
 package service_booking_api.core.domain.model.users.request;
 
+import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -7,10 +8,19 @@ import lombok.Setter;
 @Setter
 public class UserSignupRequest {
 
+    @NotBlank
     private String username;
+
+    @NotBlank
     private String email;
+
+    @NotBlank
     private String password;
+
+    @NotBlank
     private String name;
+
+    @NotBlank
     private String role;
 
 }
