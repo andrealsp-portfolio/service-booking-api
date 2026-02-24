@@ -1,8 +1,10 @@
 # Service Booking API – NEXUS
 
-Backend service responsible for user management and authentication, serving as the authentication foundation for secure frontend integration within the Service Booking platform (NEXUS).
+Backend service for the Service Booking Platform (NEXUS), currently providing authentication capabilities and evolving into a full scheduling system.
 
-This service focuses on authentication-related concerns and exposes secure REST APIs consumed by the frontend application.
+The authentication module serves as the foundation for secure frontend integration and future booking-related domains.
+
+At its current stage, the service exposes authentication-related REST APIs, while the scheduling domain is being incrementally introduced.
 
 ## Tech Stack
 
@@ -19,6 +21,7 @@ This service focuses on authentication-related concerns and exposes secure REST 
 - User authentication and JWT token generation
 - Token validation (expiration and integrity checks)
 - Exposure of secure REST APIs for frontend consumption
+- Preparation for scheduling domain expansion (Phase 2)
 
 ## Application Flow
 
@@ -126,10 +129,16 @@ This service focuses on authentication-related concerns and exposes secure REST 
 Password comparison is performed using Spring Security's PasswordEncoder,
 ensuring secure hash-based validation without exposing raw credentials.
 
-## Testing (Planned)
+## Testing Strategy
 
+Current:
 - Manual validation of authentication flows
-- Future unit and integration tests for authentication and security layers
+
+Planned:
+- Unit tests for authentication services
+- Unit tests for booking domain rules (Phase 2)
+- Integration tests for booking conflict scenarios
+- Concurrency validation scenarios to simulate booking conflicts under parallel requests
 
 ## Deployment (Planned)
 
@@ -137,11 +146,41 @@ ensuring secure hash-based validation without exposing raw credentials.
 - Planned containerization via Docker
 - Planned integration with frontend and database using Docker Compose
 
-## Known Limitations
+## Known Limitations (Current Stage)
 
-- Scope intentionally limited to authentication features
-- No business-specific booking logic implemented yet
-- Focused on backend–frontend integration and security concerns
+- Booking domain not yet exposed via REST endpoints
+- No availability or scheduling logic implemented yet
+- No database-level constraints for booking conflicts (planned)
+- No integration tests yet
+
+## Upcoming Architecture Enhancements
+
+The following architectural improvements are planned as part of the booking implementation phase:
+
+- Introduction of Provider and Booking bounded contexts
+- OffsetDateTime-based scheduling model (UTC-safe)
+- Booking modeled as startAt + duration
+- Conflict detection at application layer
+- Database-level protection against race conditions
+- Index optimization for provider-based scheduling queries
+- Docker Compose for full local environment (API + DB)
+
+## Current Phase
+
+The platform is currently evolving from an authentication-focused foundation into a full scheduling system.
+
+Phase 1 (Completed):
+- User registration
+- Authentication (JWT-based)
+- Token validation
+- Secure REST integration with frontend
+
+Phase 2 (In Progress):
+- Provider domain modeling
+- Booking lifecycle implementation
+- Availability rules
+- Conflict detection
+- Business rule enforcement at application and database levels
 
 ## Prerequisites
 
