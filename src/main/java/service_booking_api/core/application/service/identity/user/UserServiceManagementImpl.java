@@ -7,7 +7,7 @@ import service_booking_api.core.domain.model.users.request.UserSigninRequest;
 import service_booking_api.core.domain.model.users.request.UserSignupRequest;
 import service_booking_api.core.domain.model.users.response.UserDetails;
 import service_booking_api.core.port.in.identity.user.UserServiceManagement;
-import service_booking_api.infrastructure.persistence.postgres.repository.user.UserRepository;
+import service_booking_api.infrastructure.persistence.UserRepository;
 import service_booking_api.shared.exceptions.ApplicationException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;

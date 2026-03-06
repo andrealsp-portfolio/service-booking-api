@@ -1,4 +1,4 @@
-package service_booking_api.infrastructure.persistence.postgres.repository.user;
+package service_booking_api.infrastructure.persistence;
 
 import service_booking_api.core.domain.entity.users.UserEntity;
 import feign.Param;

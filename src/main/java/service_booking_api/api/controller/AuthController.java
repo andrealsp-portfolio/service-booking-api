@@ -1,4 +1,4 @@
-package service_booking_api.api.rest.identity.authentication;
+package service_booking_api.api.controller;
 
 import service_booking_api.core.domain.model.auth.AuthToken;
 import service_booking_api.core.domain.model.users.request.UserSigninRequest;
